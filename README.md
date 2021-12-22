@@ -42,4 +42,4 @@ ___
 ___ 
 [Find me on LinkedIn!](https://www.linkedin.com/in/erick-galvez-757b53161/)
 
-[**Checkout My Website**](https://www.google.com)
+[**Checkout My Website**](https://egalvez15.github.io/Portfolio/)
