@@ -13,9 +13,34 @@
 
 h1{
     font-size: 2em;
+    transition: font-size 0.5s, text-decoration 0.5s;
+}
+h3{
+    transition: font-size 0.5s, text-decoration 0.5s;
+}
+i{
+    transition: font-size 0.5s;
 }
 
 #colorIcon{
     margin-top: 20px;
     margin-right: 20px;
+}
+@media (max-width: 650px){
+    .topText h1{
+        font-size: 1.25rem;
+    }
+    .topText h3{
+        font-size: 1.025rem;
+    }
+}
+
+.topText h1:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.topText span:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
