@@ -10,6 +10,17 @@
     font-family: 'Oswald', sans-serif;
     margin: 10px 20px;
 }
+#myPics{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#myPics #myCarousel{
+    max-width: 35%;
+    max-height: 35%;
+}
 
 h1{
     font-size: 2em;
@@ -38,9 +49,11 @@ i{
 .topText h1:hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;
+    cursor: default;
 }
 
 .topText span:hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;
+    cursor: default;
 }
