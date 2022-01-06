@@ -33,6 +33,11 @@ i{
     transition: font-size 0.5s;
 }
 
+.carousel-item{
+    max-width: 500px ;
+    max-height: 500px;
+}
+
 #colorIcon{
     margin-top: 20px;
     margin-right: 20px;
