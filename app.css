@@ -11,22 +11,27 @@
     margin: 10px 20px;
 }
 #myPics{
+    background-color: darkgray;
     margin-top: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+.row{
+    min-width: 600px;
 }
 
 #myPics #myCarousel{
     max-width: 35%;
     max-height: 35%;
 }
+#text{
+    font-size: 1.5em;
+    transition: font-size 0.5s, text-decoration 0.5s;
+}
 
 h1{
     font-size: 2em;
-    transition: font-size 0.5s, text-decoration 0.5s;
-}
-h3{
     transition: font-size 0.5s, text-decoration 0.5s;
 }
 i{
@@ -46,7 +51,7 @@ i{
     .topText h1{
         font-size: 1.25rem;
     }
-    .topText h3{
+    #text{
         font-size: 1.025rem;
     }
 }
@@ -57,7 +62,7 @@ i{
     cursor: default;
 }
 
-.topText span:hover{
+#text div:hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;
     cursor: default;
