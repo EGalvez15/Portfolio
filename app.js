@@ -6,7 +6,17 @@ let icon = document.querySelector('#colorIcon i'); // get icon in order to chang
 let size = icon.className.split(" "); // get icon class name for reference based on certain actions
 let clickCount = 0;
 const myWindow = document.querySelector('body'); // get window size
+const aboutMeBtn = document.querySelector('#aboutMe');
 
+aboutMeBtn.addEventListener('click', function () {
+    const about = document.querySelector('#collapseAboutMe');
+
+    if (about.classList.contains('show')) {
+        about.classList.remove('show');
+    } else {
+        about.classList.add('show');
+    }
+});
 
 if (window.innerWidth <= 650) {
     icon.className = `${size[0]} ${size[1]} fa-lg`;
