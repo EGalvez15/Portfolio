@@ -3,29 +3,37 @@
 
 
 let icon = document.querySelector('#colorIcon i'); // get icon in order to change class
+let linkIcons = document.querySelectorAll('#collapseLinks .card div a i'); // get addtional link icons
 let size = icon.className.split(" "); // get icon class name for reference based on certain actions
-let clickCount = 0;
+let clickCount = 0; // helper variable for when changing to dark mode
 const myWindow = document.querySelector('body'); // get window size
-const aboutMeBtn = document.querySelector('#aboutMe');
-const contactBtn = document.querySelector('#contact');
-const filesBtn = document.querySelector('#files');
+const aboutMeBtn = document.querySelector('#aboutMe'); // for when about button is clicked
+const contactBtn = document.querySelector('#contact'); // for when contact info button is clicked
+const linksBtn = document.querySelector('#links'); // for when links button is clicked
 
-filesBtn.addEventListener('click', function(){
-    const files = document.querySelector('#collapseFiles');
-    const icon = document.querySelector('#filesArrow')
+//immediately checks to see if window is phone size to resize
+checkWindowSize();
 
-    if (files.classList.contains('show')) {
-        files.classList.remove('show');
+
+// in case of additional links button is clicked will show additional links tab
+linksBtn.addEventListener('click', function(){
+    const links = document.querySelector('#collapseLinks');
+    const icon = document.querySelector('#linksArrow')
+
+    if (links.classList.contains('show')) {
+        links.classList.remove('show');
         icon.classList.add('fa-arrow-right');
         icon.classList.remove('fa-arrow-down');
 
     } else {
-        files.classList.add('show');
+        links.classList.add('show');
         icon.classList.remove('fa-arrow-right');
         icon.classList.add('fa-arrow-down');
     }
 
 });
+
+// in case contact button is clicked contact info is shown
 contactBtn.addEventListener('click', function(){
     const contact = document.querySelector('#collapseContact');
     const icon = document.querySelector('#contactArrow')
@@ -42,6 +50,8 @@ contactBtn.addEventListener('click', function(){
     }
 
 });
+
+// in case about me is clicked correlating about me info is shown
 aboutMeBtn.addEventListener('click', function(){
     const about = document.querySelector('#collapseAboutMe');
     const icon = document.querySelector('#aboutArrow')
@@ -68,9 +78,23 @@ if (window.innerWidth <= 650) {
 // if above threshold will make icon 2x
 function checkWindowSize() {
     if (window.innerWidth <= 650) {
+        for(currIcon of linkIcons){
+            if(currIcon.classList.contains('fa-4x')){
+                currIcon.classList.remove('fa-4x');
+                currIcon.classList.add('fa-2x');
+            }
+
+        }
         icon.className = `${size[0]} ${size[1]} fa-lg`;
         size = icon.className.split(" ");
     } else {
+        for(currIcon of linkIcons){
+            if(currIcon.classList.contains('fa-2x')){
+                currIcon.classList.remove('fa-2x');
+                currIcon.classList.add('fa-4x');
+            }
+
+        }
         icon.className = `${size[0]} ${size[1]} fa-2x`;
         size = icon.className.split(" ");
     }
