@@ -7,15 +7,56 @@ let size = icon.className.split(" "); // get icon class name for reference based
 let clickCount = 0;
 const myWindow = document.querySelector('body'); // get window size
 const aboutMeBtn = document.querySelector('#aboutMe');
+const contactBtn = document.querySelector('#contact');
+const filesBtn = document.querySelector('#files');
 
-aboutMeBtn.addEventListener('click', function () {
+filesBtn.addEventListener('click', function(){
+    const files = document.querySelector('#collapseFiles');
+    const icon = document.querySelector('#filesArrow')
+
+    if (files.classList.contains('show')) {
+        files.classList.remove('show');
+        icon.classList.add('fa-arrow-right');
+        icon.classList.remove('fa-arrow-down');
+
+    } else {
+        files.classList.add('show');
+        icon.classList.remove('fa-arrow-right');
+        icon.classList.add('fa-arrow-down');
+    }
+
+});
+contactBtn.addEventListener('click', function(){
+    const contact = document.querySelector('#collapseContact');
+    const icon = document.querySelector('#contactArrow')
+
+    if (contact.classList.contains('show')) {
+        contact.classList.remove('show');
+        icon.classList.add('fa-arrow-right');
+        icon.classList.remove('fa-arrow-down');
+
+    } else {
+        contact.classList.add('show');
+        icon.classList.remove('fa-arrow-right');
+        icon.classList.add('fa-arrow-down');
+    }
+
+});
+aboutMeBtn.addEventListener('click', function(){
     const about = document.querySelector('#collapseAboutMe');
+    const icon = document.querySelector('#aboutArrow')
 
     if (about.classList.contains('show')) {
         about.classList.remove('show');
+        icon.classList.add('fa-arrow-right');
+        icon.classList.remove('fa-arrow-down');
+
     } else {
         about.classList.add('show');
+        icon.classList.remove('fa-arrow-right');
+        icon.classList.add('fa-arrow-down');
     }
+
 });
 
 if (window.innerWidth <= 650) {
@@ -58,12 +99,27 @@ icon.addEventListener("mouseleave", function (event) {
 
 icon.addEventListener("click", function (event) {
     clickCount += 1;
+    const btns = document.querySelectorAll('.btn');
+    const infoContainer = document.querySelectorAll('.card');
 
     if (clickCount % 2 == 0) {
+        for(let i = 0; i < btns.length; i++){
+            infoContainer[i].style.backgroundColor = 'white';
+            infoContainer[i].style.color = 'black';
+            btns[i].style.backgroundColor = 'white';
+            btns[i].style.color = 'black';
+        }
         myWindow.style.backgroundColor = 'white';
         myWindow.style.color = 'black';
+        
     }
     else {
+        for(let i = 0; i < btns.length; i++){
+            infoContainer[i].style.backgroundColor = 'black';
+            infoContainer[i].style.color = 'white';
+            btns[i].style.backgroundColor = 'black';
+            btns[i].style.color = 'white';
+        }
         myWindow.style.backgroundColor = 'black';
         myWindow.style.color = 'white';
     }
