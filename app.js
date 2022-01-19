@@ -6,14 +6,47 @@ let icon = document.querySelector('#colorIcon i'); // get icon in order to chang
 let linkIcons = document.querySelectorAll('#collapseLinks .card div a i'); // get addtional link icons
 let size = icon.className.split(" "); // get icon class name for reference based on certain actions
 let clickCount = 0; // helper variable for when changing to dark mode
+let wifeMode = false;
+const wifeBtn = document.querySelector('#wife div i');//select wife icon
 const myWindow = document.querySelector('body'); // get window size
 const aboutMeBtn = document.querySelector('#aboutMe'); // for when about button is clicked
 const contactBtn = document.querySelector('#contact'); // for when contact info button is clicked
 const linksBtn = document.querySelector('#links'); // for when links button is clicked
-
+let holder = '';
+let iconSize = icon.classList[2];
 //immediately checks to see if window is phone size to resize
 checkWindowSize();
 
+
+
+wifeBtn.addEventListener('click', toggleWifeMode);
+
+function toggleWifeMode(){
+    if(!wifeMode){
+        const btns = document.querySelectorAll('.btn');
+        const infoContainer = document.querySelectorAll('.card');
+        const pics = document.querySelector('#myPics');
+        holder = icon.classList.value;
+        iconSize = holder.split(" ")[2];
+        icon.className = `fas fa-cat ${iconSize}`;
+    
+        for(let i = 0; i < btns.length; i++){
+            infoContainer[i].style.backgroundColor = '#ffb9de';
+            infoContainer[i].style.color = '#ffffd8';
+            btns[i].style.backgroundColor = '#ffaad7';
+            btns[i].style.color = '#ffffd8';
+        }
+        pics.style.backgroundColor = '#ffe2f1';
+        myWindow.style.backgroundColor = '#ffaad7';
+        myWindow.style.color = '#ffffd8';
+
+        wifeMode = true;
+    }
+    else{
+        clickCount += 1;
+        toggleDarkMode();
+    }
+}
 
 // in case of additional links button is clicked will show additional links tab
 linksBtn.addEventListener('click', function(){
@@ -70,8 +103,7 @@ aboutMeBtn.addEventListener('click', function(){
 });
 
 if (window.innerWidth <= 650) {
-    icon.className = `${size[0]} ${size[1]} fa-lg`;
-    size = icon.className.split(" ");
+    icon.classList.replace('fa-2x', 'fa-lg');
 }
 // this function will check when window is resized
 // if window size goes under certain threshold it will change the icon size
@@ -85,8 +117,11 @@ function checkWindowSize() {
             }
 
         }
-        icon.className = `${size[0]} ${size[1]} fa-lg`;
-        size = icon.className.split(" ");
+        if(icon.classList.contains('fa-x2')){
+            icon.classList.replace('fa-2x', 'fa-lg');
+            iconSize = icon.classList.value.split(" ")[2];
+        }
+
     } else {
         for(currIcon of linkIcons){
             if(currIcon.classList.contains('fa-2x')){
@@ -95,8 +130,10 @@ function checkWindowSize() {
             }
 
         }
-        icon.className = `${size[0]} ${size[1]} fa-2x`;
-        size = icon.className.split(" ");
+        if(icon.classList.contains('fa-lg')){
+            icon.classList.replace('fa-lg','fa-2x');
+            iconSize = icon.classList.value.split(" ")[2];
+        }
     }
 
 }
@@ -106,25 +143,39 @@ window.onresize = checkWindowSize;
 
 // when cursor enters icon field change icon
 icon.addEventListener("mouseenter", function (event) {
-    event.target.className = `far ${size[1]} ${size[2]}`;
-    size = icon.className.split(" ");
-
-
-}, false);
+    if(wifeMode){
+        icon.style.color = '#301934';
+    }
+    else{
+        icon.classList.replace('fas','far');
+    }
+});
 
 // when cursor leaves icon field change icon back to original state
 icon.addEventListener("mouseleave", function (event) {
+    if(wifeMode){
+        icon.style.color = '#ffffd8';
+    }
+    else{
+        icon.classList.replace('far','fas');
+    }
 
-    event.target.className = `fas ${size[1]} ${size[2]}`;
-    size = icon.className.split(" ");
+});
 
-
-}, false);
-
-icon.addEventListener("click", function (event) {
+function toggleDarkMode(){
     clickCount += 1;
     const btns = document.querySelectorAll('.btn');
     const infoContainer = document.querySelectorAll('.card');
+    const pics = document.querySelector('#myPics');
+    pics.style.backgroundColor = 'gray';
+    if(wifeMode){
+        wifeMode = false;
+        temp = holder.split(" ");
+        temp[2] = iconSize
+        icon.className = `${temp[0]} ${temp[1]} ${temp[2]}`;
+        icon.style.color = 'inherit';
+    }
+
 
     if (clickCount % 2 == 0) {
         for(let i = 0; i < btns.length; i++){
@@ -147,8 +198,8 @@ icon.addEventListener("click", function (event) {
         myWindow.style.backgroundColor = 'black';
         myWindow.style.color = 'white';
     }
-
-});
+}
+icon.addEventListener("click", toggleDarkMode);
 
 let myCarousel = document.querySelector('#myCarousel');
 let leftButton = document.querySelector('button.carousel-control-prev');

@@ -1,3 +1,16 @@
+#wife{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+#wife div i{
+    margin-top: 10px;
+    color: pink;
+    transition: transform 0.5s;
+}
+
 /* these two anchor tags will now inherit default color so it does not change icon color */
 a{
     color: inherit;
@@ -128,4 +141,8 @@ h1{
 /* add transformation on additional link icons */
 #collapseLinks .card div:hover{
     transform: scale(1.3,1.3) translate(0%, -20%);
-} 
+}
+
+#wife div i:hover{
+    transform: scale(1.75, 1.75);
+}
